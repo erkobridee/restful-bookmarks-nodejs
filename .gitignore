@@ -7,6 +7,8 @@
 **/.Spotlight-V100
 **/.Trashes
 
+**/.css
+
 # Node.js ignore
 
 node_modules/
