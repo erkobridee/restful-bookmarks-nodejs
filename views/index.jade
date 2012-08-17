@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .container(ng-view)
+
+block scripts
+  // https://developers.google.com/speed/libraries/devguide
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
+  script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js")
+  //script(src="http://code.angularjs.org/angular-1.0.1.min.js")
+  script(src="http://code.angularjs.org/angular-resource-1.0.1.min.js")
+
+  // app
+  script(src="/js/services.js")
+  script(src="/js/controllers.js")
+  script(src="/js/app.js")
