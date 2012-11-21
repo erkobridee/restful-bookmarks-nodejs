@@ -43,7 +43,7 @@ var BookmarkModel = (function(db) {
     FInterface.ensureImplements(this, ModelFInterface);
   };
 
-  classDef.prototype.list = function() {
+  classDef.prototype.list = function(cb) {
     var bookmarks = [];
 
     db.bookmarks.forEach(function(bookmark, i) {
@@ -55,10 +55,12 @@ var BookmarkModel = (function(db) {
       });
     });
 
-    return bookmarks;    
+    //return bookmarks;
+
+    cb(null, bookmarks);
   };
 
-  classDef.prototype.find = function(id) {
+  classDef.prototype.find = function(id, cb) {
     var vo = "Not Found";
 
     if(id >= 0 && id < db.bookmarks.length) {
@@ -66,15 +68,20 @@ var BookmarkModel = (function(db) {
       vo.id = id;
     }
 
-    return vo;     
+    //return vo;
+
+    cb(null, vo);
   };
 
-  classDef.prototype.insert = function(vo) {
+  classDef.prototype.insert = function(vo, cb) {
     db.bookmarks.push(vo);
-    return vo;    
+    
+    //return vo;
+
+    cb(null, vo);
   };
 
-  classDef.prototype.update = function(id, vo) {
+  classDef.prototype.update = function(id, vo, cb) {
     var flag = true;
 
     if(id >= 0 && id < db.bookmarks.length) {
@@ -83,10 +90,12 @@ var BookmarkModel = (function(db) {
       flag = false;
     }
 
-    return flag;    
+    //return flag;
+
+    cb(null, flag);  
   };
 
-  classDef.prototype.remove = function(id) {
+  classDef.prototype.remove = function(id, cb) {
     var flag = true;
 
       if(id >= 0 && id < db.bookmarks.length) {
@@ -95,7 +104,9 @@ var BookmarkModel = (function(db) {
         flag = false;
       }
 
-      return flag;    
+      //return flag;
+
+      cb(null, flag); 
   };
 
   return classDef;

@@ -1,29 +1,34 @@
 //-----------------------------------------------------------
+/*
+  - mock
+  - mysql  >> use bookmarks.sql to create bookmarks database
+*/
+var use = 'mock';
 
-var Model = require('./mock/BookmarkModel');
+var Model = require('./' + use + '/BookmarkModel');
 
 var model = new Model();
 
 //-----------------------------------------------------------
 
-exports.list = function() {
-  return model.list();
+exports.list = function(cb) {
+  return model.list(cb);
 };
 
-exports.find = function(id) {
-  return model.find(id);  
+exports.find = function(id, cb) {
+  return model.find(id, cb);  
 }
 
-exports.insert = function(vo) {
-  return model.insert(vo);
+exports.insert = function(vo, cb) {
+  return model.insert(vo, cb);
 };
 
-exports.update = function(id, vo) {
-  return model.update(id, vo);
+exports.update = function(id, vo, cb) {
+  return model.update(id, vo, cb);
 };
 
-exports.remove = function(id) {
-  return model.remove(id);
+exports.remove = function(id, cb) {
+  return model.remove(id, cb);
 }
 
 //-----------------------------------------------------------
