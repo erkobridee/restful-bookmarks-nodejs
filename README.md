@@ -102,6 +102,7 @@ Porém, a estrutura utilizada para o projeto foi modificada para:
         BookmarkModel.js
       mysql/
         BookmarkModel.js
+        bookmarks.sql
       BookmarkModel.js
     views/
       css/
@@ -121,15 +122,15 @@ Porém, a estrutura utilizada para o projeto foi modificada para:
 Histórico
 ----------------------------
 
-* v0
+* [v0](https://github.com/erkobridee/restful-bookmarks-nodejs/tree/v0)
 
 versão inicial e básica
 
-* v1
+* [v1](https://github.com/erkobridee/restful-bookmarks-nodejs/tree/v1)
 
 versão organizada e utilizando uma base de dados fake em memória
 
-* v2
+* [v2](https://github.com/erkobridee/restful-bookmarks-nodejs/tree/v2)
 
 versão com suporte para acesso aos dados em um base mysql, ver o diretório /app/models/mysql
 
