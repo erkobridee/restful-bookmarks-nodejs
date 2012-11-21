@@ -1,4 +1,4 @@
-var bookmarkModel = require('../model/BookmarkModel');
+var bookmarkModel = require('../models/BookmarkModel');
 
 
 exports.getAll = function(req, res) {

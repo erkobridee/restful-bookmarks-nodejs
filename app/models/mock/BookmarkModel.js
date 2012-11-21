@@ -37,7 +37,7 @@ var BookmarkModel = (function(db) {
 
   // dependencies
   var FInterface = require('../../helpers/FInterface')
-    , ModelFInterface = require('../ModelFInterface');
+    , ModelFInterface = require('../interfaces/ModelFInterface');
   
   var classDef = function() {
     FInterface.ensureImplements(this, ModelFInterface);

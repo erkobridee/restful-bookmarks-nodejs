@@ -90,11 +90,17 @@ Porém, a estrutura utilizada para o projeto foi modificada para:
   package.json
   app.js
   app/
-    model/
+    controllers/
+      BookmarkApiCtrl.js
+      UrlCtrl.js  
+    helpers/
+      FInterface.js
+    models/
+      interfaces/
+        ModelFInterface.js
+      mock/
+        BookmarkModel.js
       BookmarkModel.js
-    service/
-      BookmarkApiService.js
-      UrlService.js
     views/
       css/
         style.styl

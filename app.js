@@ -7,9 +7,9 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
 
-  , urlService = require('./app/service/UrlService')
+  , urlCtrl = require('./app/controllers/UrlCtrl')
 
-  , bookmarkAPI = require('./app/service/BookmarkApiService')
+  , bookmarkAPI = require('./app/controllers/BookmarkApiCtrl')
 ;
 
 var app = express();
@@ -35,7 +35,7 @@ app.configure('development', function(){
 });
 
 
-app.get('/', urlService.index);
+app.get('/', urlCtrl.index);
 
 app.get('/api/bookmarks', bookmarkAPI.getAll);
 app.get('/api/bookmarks/:id', bookmarkAPI.getById);
