@@ -8,6 +8,9 @@
   "dependencies": {
     "express": "3.0.3",
     "jade": "*",
-    "stylus": "*"
+    "stylus": "*",
+    "async": "*",
+    "generic-pool": "*",
+    "mysql": "2.0.0-alpha3"
   }
 }
