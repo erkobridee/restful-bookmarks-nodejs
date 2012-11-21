@@ -19,7 +19,6 @@ Utilizado neste projeto
   * [Express.js](http://expressjs.com/) 3.0.3
   * [Jade](http://jade-lang.com/) (outra sintaxe para gerar HTML)
   * [Stylus](http://learnboost.github.com/stylus/) (outra sintaxe para gerar CSS)
-  * **Atenção:** a base de dados nesta versão é um mock
 
 Post que auxiliou na montagem desse projeto: [Writing an AngularJS App with an Express + Node.js Backend](http://briantford.com/blog/angular-express.html). Uma leitura adicional muito útil e recomendável para se trabalhar com JavaScript : [JavaScript Patterns Collection](http://shichuan.github.com/javascript-patterns/)
   
@@ -95,10 +94,13 @@ Porém, a estrutura utilizada para o projeto foi modificada para:
       UrlCtrl.js  
     helpers/
       FInterface.js
+      MySqlProvider.js
     models/
       interfaces/
         ModelFInterface.js
       mock/
+        BookmarkModel.js
+      mysql/
         BookmarkModel.js
       BookmarkModel.js
     views/
@@ -114,3 +116,16 @@ Porém, a estrutura utilizada para o projeto foi modificada para:
     tpl/
       list.html
       edit.html</code></pre>
+
+
+Histórico
+----------------------------
+
+* v0
+
+versão inicial e básica
+
+* v1
+
+versão organizada e utilizando uma base de dados fake em memória
+
