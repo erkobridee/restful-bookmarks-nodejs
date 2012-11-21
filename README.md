@@ -129,3 +129,7 @@ versão inicial e básica
 
 versão organizada e utilizando uma base de dados fake em memória
 
+* v2
+
+versão com suporte para acesso aos dados em um base mysql, ver o diretório /app/models/mysql
+
