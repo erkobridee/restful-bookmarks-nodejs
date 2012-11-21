@@ -107,7 +107,4 @@ Porém, a estrutura utilizada para o projeto foi modificada para:
       services.js
     tpl/
       list.html
-      edit.html
-    css/
-      style.styl    
-    images/</code></pre>
+      edit.html</code></pre>
