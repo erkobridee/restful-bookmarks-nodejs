@@ -16,7 +16,7 @@ Utilizado neste projeto
 
 * Servidor
   * [Node.js](http://nodejs.org/) v0.8.7
-  * [Express.js](http://expressjs.com/) 3.0.0rc3
+  * [Express.js](http://expressjs.com/) 3.0.3
   * [Jade](http://jade-lang.com/) (outra sintaxe para gerar HTML)
   * [Stylus](http://learnboost.github.com/stylus/) (outra sintaxe para gerar CSS)
   * **Atenção:** a base de dados nesta versão é um mock
@@ -95,6 +95,11 @@ Porém, a estrutura utilizada para o projeto foi modificada para:
     service/
       BookmarkApiService.js
       UrlService.js
+    views/
+      css/
+        style.styl
+      layout.jade
+      index.jade
   public/
     js/
       app.js
@@ -105,7 +110,4 @@ Porém, a estrutura utilizada para o projeto foi modificada para:
       edit.html
     css/
       style.styl    
-    images/
-    views/
-      layout.jade
-      index.java</code></pre>
+    images/</code></pre>
