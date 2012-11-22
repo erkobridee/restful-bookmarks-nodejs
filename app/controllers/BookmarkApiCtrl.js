@@ -4,7 +4,6 @@ var bookmarkModel = require('../models/BookmarkModel');
 exports.getAll = function(req, res) {
 
   bookmarkModel.list(function(err, results) {
-    //console.log(results);
     res.json( results );
   });
 
