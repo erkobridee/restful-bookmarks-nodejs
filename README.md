@@ -138,9 +138,10 @@ versão organizada e utilizando uma base de dados fake em memória
 
   * para utilizar o mysql, altere o atributo `use` do arquivo: /app/models/BookmarkModel.js
 
-* v3
+* [v3](https://github.com/erkobridee/restful-bookmarks-nodejs/tree/v3)
 
   * versão com suporte para o [mongodb](http://www.mongodb.org/), através do mongoosejs, ver o diretório /app/models/mongodb
 
+  * para utilizar o mongodb, altere o atributo `use` do arquivo: /app/models/BookmarkModel.js
 
 
