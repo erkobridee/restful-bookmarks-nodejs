@@ -55,25 +55,18 @@ var BookmarkModel = (function() {
   };
 
   classDef.prototype.update = function(id, vo, cb) {
-    var flag = true;
-
     this.provider.update(id, vo, function(err, result) {
-      if (err) flag = false;
-
-      cb(err, flag);
+      if (err) cb(err, false);
+      else cb(null, true);
     });
 
   };
 
   classDef.prototype.remove = function(id, cb) {
-    var flag = true;
-
-      this.provider.remove(id, function(err, result) {
-        if(err) flag = false;
-
-        cb(err, flag);
-      });
-
+    this.provider.remove(id, function(err, result) {
+      if (err) cb(err, false);
+      else cb(null, true);
+    });
   };
 
   return classDef;

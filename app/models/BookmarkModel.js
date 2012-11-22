@@ -2,6 +2,7 @@
 /*
   - mock
   - mysql  >> use bookmarks.sql to create bookmarks database
+  - mongdb >> mongoosejs
 */
 var use = 'mock';
 

@@ -103,6 +103,8 @@ Porém, a estrutura utilizada para o projeto foi modificada para:
       mysql/
         BookmarkModel.js
         bookmarks.sql
+      mongodb/
+        BookmarkModel.js
       BookmarkModel.js
     views/
       css/
@@ -132,5 +134,13 @@ versão organizada e utilizando uma base de dados fake em memória
 
 * [v2](https://github.com/erkobridee/restful-bookmarks-nodejs/tree/v2)
 
-versão com suporte para acesso aos dados em um base mysql, ver o diretório /app/models/mysql
+  * versão com suporte para acesso aos dados em um base mysql, ver o diretório /app/models/mysql
+
+  * para utilizar o mysql, altere o atributo `use` do arquivo: /app/models/BookmarkModel.js
+
+* v3
+
+  * versão com suporte para o [mongodb](http://www.mongodb.org/), através do mongoosejs, ver o diretório /app/models/mongodb
+
+
 
