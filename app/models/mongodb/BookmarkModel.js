@@ -86,13 +86,47 @@ var BookmarkModel = (function(Bookmark) {
     initMongoData();
   };
 
-  classDef.prototype.list = function(cb) {
-    Bookmark
-      .find()
-      .sort('name')
-      .exec(function(err, docs) {
-        cb(err, docs);
-      });
+  classDef.prototype.list = function(opts, cb) {
+    var result, async, selectErr;
+
+    async = require('async');
+
+    result = {
+      data: [],
+      count: 0,
+      page: 0,
+      pages: 1
+    };
+
+    async.series({
+      select: function(next) {
+        Bookmark
+          .find()
+          .limit(opts.size)
+          .skip(opts.size * opts.page)
+          .sort('name')
+          .exec(function(err, docs) {
+            selectErr = err;
+            result.data = docs;
+            next();
+          });
+      },
+      count: function(next) {
+        if(selectErr) next();
+
+        Bookmark
+          .count()
+          .exec(function(err, count) {
+            result.count = count;
+            result.page = opts.page;
+            result.pages = Math.ceil(count / opts.size);
+            next();
+          });
+      },
+      back: function(next) {
+        cb(selectErr, result);
+      }
+    });
   };
 
   classDef.prototype.find = function(id, cb) {

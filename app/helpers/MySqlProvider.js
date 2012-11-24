@@ -78,7 +78,7 @@ var MySqlProvider = (function(){
 
         next();
       },
-      end         : function(next) { 
+      end      : function(next) { 
         if(provider.debug) console.log('callback');
         callback(err, results); 
       }
@@ -125,6 +125,17 @@ var MySqlProvider = (function(){
   Provider.prototype.__proto__ = EventEmitter.prototype;
 
   //--- public
+  Provider.prototype.count = function(callback) {
+    var sql = 'SELECT COUNT(0) AS count FROM ' + this.table;
+
+    function localCallback(err, rows) {
+      if(err) return callback(err);
+      else return callback(null, parseInt(rows[0].count));
+    };
+
+    return dbOperation(this, localCallback, sql);
+  }; 
+
   Provider.prototype.findAll = function(callback) {
     var sql = 'SELECT * FROM ' + this.table;
 
@@ -169,6 +180,48 @@ var MySqlProvider = (function(){
     }
 
     return dbOperation(this, callback, sql, values);
+  };
+
+  Provider.prototype.paginate = function(page, size, callback) {
+    var params, result, sql, self;
+    
+    self = this;
+
+    params = [(page*size), size];
+    
+    result = {
+      data: [],
+      count: 0,
+      page: 0,
+      pages: 1
+    };
+
+    sql = 'SELECT * FROM ' + this.table + ' LIMIT ?,?';
+
+    async.series({
+      select: function(next) {
+        self.query(sql, params, function(err, results) {
+          if(!err) {
+            result.data = results;
+          }
+          next();
+        });
+      },
+      count: function(next) {
+        self.count(function(err, count) {
+          if(!err) {
+            result.count = count;
+            result.page = page;
+            result.pages = Math.ceil(count / size);
+          }
+          next();
+        });
+      },
+      back: function(next) {
+        callback(null, result);
+      }
+    });
+
   };
 
   Provider.prototype.destroy = function() {

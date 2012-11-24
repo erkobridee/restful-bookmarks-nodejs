@@ -4,7 +4,27 @@ Ctrl = (function() {
   function Ctrl() {}
 
   Ctrl.prototype.List = function($scope, BookmarkResource) {
-    $scope.bookmarks = BookmarkResource.query();
+    
+    $scope.pageSize = 2;
+
+    function loadData(page) {
+      BookmarkResource.get(
+        {
+          page: page,
+          size: $scope.pageSize
+        },
+        function(res) {
+          $scope.bookmarks = res;
+      });
+    }
+
+    $scope.setPage = function() {
+      if(this.n != $scope.bookmarks.page) {
+        loadData(this.n);
+      }
+    }
+
+    loadData(0);
   }
 
   Ctrl.prototype.New = function($scope, $location, BookmarkResource) {

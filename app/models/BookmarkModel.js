@@ -12,8 +12,8 @@ var model = new Model();
 
 //-----------------------------------------------------------
 
-exports.list = function(cb) {
-  return model.list(cb);
+exports.list = function(opts, cb) {
+  return model.list(opts, cb);
 };
 
 exports.find = function(id, cb) {

@@ -7,6 +7,8 @@ angular.module('BookmarkService', ['ngResource'])
       {
         'param1': ''
       , 'param2': ''
+      , 'page': 0
+      , 'size': 10
       }, {
         'update': { 'method': 'PUT' }
       }

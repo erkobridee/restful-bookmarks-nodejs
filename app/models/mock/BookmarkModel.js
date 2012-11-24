@@ -43,7 +43,14 @@ var BookmarkModel = (function(db) {
     FInterface.ensureImplements(this, ModelFInterface);
   };
 
-  classDef.prototype.list = function(cb) {
+  classDef.prototype.list = function(opts, cb) {
+    var result = {
+      data: [],
+      count: 0,
+      page: 0,
+      pages: 1
+    };
+
     var bookmarks = [];
 
     db.bookmarks.forEach(function(bookmark, i) {
@@ -55,9 +62,45 @@ var BookmarkModel = (function(db) {
       });
     });
 
+    //---
+    var bookmarksPage = [];
+    var i, count, length, skip, limit, flag;
+
+    count = 0;
+    length = bookmarks.length;
+    i = skip = (opts.page * opts.size);
+    limit = opts.size;
+
+    if(i < length) {
+      flag = true;
+    } else {
+      flag = false;
+    }
+
+    while(flag) {
+
+      bookmarksPage.push(bookmarks[i]);
+
+      i++; count++
+
+      if(i<length && count<limit) {
+        flag = true;
+      } else {
+        flag = false;
+      }
+    }
+    
+    result.count = length;
+    result.data = bookmarksPage;
+    result.page = opts.page;
+    result.pages = Math.ceil(length / opts.size);
+    //---
+
     //return bookmarks;
 
-    cb(null, bookmarks);
+    //cb(null, bookmarks);
+
+    cb(null, result);
   };
 
   classDef.prototype.find = function(id, cb) {

@@ -23,13 +23,9 @@ var BookmarkModel = (function() {
     this.provider = new MySqlProvider(table, dbconfig);
   };
 
-  classDef.prototype.list = function(cb) {
-    var bookmarks = [];
-
-    this.provider.findAll(function(err, results) {
-      if(!err) bookmarks = results;
-
-      cb(err, bookmarks);
+  classDef.prototype.list = function(opts, cb) {
+    this.provider.paginate(opts.page, opts.size, function(err, result) {
+      cb(null, result);
     });
   };
 

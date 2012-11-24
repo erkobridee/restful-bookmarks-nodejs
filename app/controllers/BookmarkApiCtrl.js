@@ -1,9 +1,23 @@
 var bookmarkModel = require('../models/BookmarkModel');
 
+function toNumber(value) {
+  if(typeof value === 'string')
+    value = parseInt(value);
+  return value;
+}
 
 exports.getAll = function(req, res) {
+  var page, size, opts;
 
-  bookmarkModel.list(function(err, results) {
+  page = req.param('page') || 0; 
+  size = req.param('size') || 10;
+
+  opts = {
+    page: toNumber(page),
+    size: toNumber(size)
+  };
+  
+  bookmarkModel.list(opts, function(err, results) {
     res.json( results );
   });
 

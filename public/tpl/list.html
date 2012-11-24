@@ -1,7 +1,11 @@
 <div class="row">
-  <h2>Bookmarks List</h2>
+  <h2>
+    Bookmarks 
+    <span ng-show="bookmarks.count">({{bookmarks.count}})</span>
+    <span> | page size ({{pageSize}})</span>
+  </h2>
 
-  <input type="text" ng-model="search" class="search-query" placeholder="Search">
+  <input type="text" ng-model="search" class="search-query" placeholder="Local Table Filter">
 
   <p>&nbsp;</p>
 
@@ -14,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="bookmark in bookmarks | filter:search | orderBy:'name'">
+      <tr ng-repeat="bookmark in bookmarks.data | filter:search | orderBy:'name'">
         <td><a href="{{bookmark.url}}" target="_blank">{{bookmark.name}}</a></td>
         <td>{{bookmark.description}}</td>
         <td>
@@ -23,4 +27,17 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+<div class="row" ng-show="bookmarks.pages > 1">
+  <!-- http://twitter.github.com/bootstrap/components.html#pagination -->
+  <div class="pagination">
+    <ul>
+      <li 
+        ng-repeat="n in [] | range: bookmarks.pages"
+        ng-class="{active: n == bookmarks.page}"
+      ><a ng-bind="n+1" ng-click="setPage()">1</a></li>
+    </ul>
+  </div>
+
 </div>
