@@ -46,7 +46,7 @@ Quanto ao RESTful do projeto
 A definição do método a ser executado é definido no cabeçalho da requisição enviada para o servidor.
 
 * **GET** - recupera 1 ou mais bookmarks
-  * [.../api/bookmarks/]() - lista todos os bookmarks
+  * [.../api/bookmarks/]() - lista todos os bookmarks | agora som suporte para paginação *?page=${num}&size=${length}*
   * [.../api/bookmarks/{id}]() - retorna o respectivo bookmark pelo seu ID
 * **POST** - insere um novo
   * [.../api/bookmarks/]() - enviado via post
@@ -144,4 +144,11 @@ versão organizada e utilizando uma base de dados fake em memória
 
   * para utilizar o mongodb, altere o atributo `use` do arquivo: /app/models/BookmarkModel.js
 
+* [v4](https://github.com/erkobridee/restful-bookmarks-nodejs/tree/v4)
+
+  * suporte para paginação de dados
+
+  * parâmetros: **page** - define o índice da página, iniciando em 0 e **size** - quantidade de itens por página | valores padrão definidos no lado do servidor : page = 0 e size = 10
+  
+  * verifique a *function* **getAll** do arquivo: */app/controllers/BookmarkApiCtrl.js*
 
