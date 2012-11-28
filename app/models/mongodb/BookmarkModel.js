@@ -94,16 +94,18 @@ var BookmarkModel = (function(Bookmark) {
     result = {
       data: [],
       count: 0,
-      page: 0,
+      page: 1,
       pages: 1
     };
+
+    if(opts.page <= 0) opts.page = 1;
 
     async.series({
       select: function(next) {
         Bookmark
           .find()
           .limit(opts.size)
-          .skip(opts.size * opts.page)
+          .skip(opts.size * (opts.page-1))
           .sort('name')
           .exec(function(err, docs) {
             selectErr = err;

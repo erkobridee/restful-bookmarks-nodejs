@@ -46,14 +46,22 @@ Quanto ao RESTful do projeto
 A definição do método a ser executado é definido no cabeçalho da requisição enviada para o servidor.
 
 * **GET** - recupera 1 ou mais bookmarks
-  * [.../api/bookmarks/]() - lista todos os bookmarks | agora som suporte para paginação *?page=${num}&size=${length}*
-  * [.../api/bookmarks/{id}]() - retorna o respectivo bookmark pelo seu ID
+
+  * [.../rest/bookmarks/]() - lista todos os bookmarks | agora som suporte para paginação *?page=${num}&size=${length}*
+
+  * [.../rest/bookmarks/{id}]() - retorna o respectivo bookmark pelo seu ID
+
 * **POST** - insere um novo
-  * [.../api/bookmarks/]() - enviado via post
+
+  * [.../rest/bookmarks/]() - enviado via post
+
 * **PUT** - atualiza um existente
-  * [.../api/bookmarks/{id}]() - enviado via post 
+
+  * [.../rest/bookmarks/{id}]() - enviado via post 
+
 * **DELETE** - remove 1 bookmark pelo ID
-  * [.../api/bookmarks/{id}]() 
+
+  * [.../rest/bookmarks/{id}]() 
 
 
 Passos para gerar a estrutura inicial do projeto
@@ -148,7 +156,7 @@ versão organizada e utilizando uma base de dados fake em memória
 
   * suporte para paginação de dados
 
-  * parâmetros: **page** - define o índice da página, iniciando em 0 e **size** - quantidade de itens por página | valores padrão definidos no lado do servidor : page = 0 e size = 10
+	  * parâmetros: **page** - define o índice da página, iniciando em 1 e **size** - quantidade de itens por página | valores padrão definidos no lado do servidor : page = 1 e size = 10
   
   * verifique a *function* **getAll** do arquivo: */app/controllers/BookmarkApiCtrl.js*
 

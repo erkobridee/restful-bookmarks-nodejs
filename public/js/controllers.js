@@ -8,7 +8,7 @@ Ctrl = (function() {
     $scope.metainf = {
       pageSize: 2,
       count: 0,
-      lastPage: 0,
+      lastPage: 1,
       lastPageSize: 0,
       totalPages: 0
     };
@@ -40,12 +40,8 @@ Ctrl = (function() {
     //--- 
 
     $scope.updatePageIndex = function() {
-      var mod = $scope.metainf.count % $scope.metainf.pageSize;
-      
-      $scope.metainf.lastPage = $scope.metainf.totalPages;
-      if(mod !== 0) {
-        $scope.metainf.lastPage--;
-      } 
+      var pages = Math.ceil($scope.metainf.count / $scope.metainf.pageSize);
+      $scope.metainf.lastPage = pages;
     }
 
   }
@@ -70,8 +66,8 @@ Ctrl = (function() {
     }
 
     $scope.setPage = function() {
-      if(this.n != $scope.bookmarks.page) {
-        $scope.setLastPage(this.n);
+      if((this.n+1) != $scope.bookmarks.page) {
+        $scope.setLastPage(this.n+1);
         loadData($scope.getLastPage());
       }
     }
@@ -89,6 +85,7 @@ Ctrl = (function() {
 	  	console.log('save button');
 	  	
 	  	$scope.bookmark.$save(function(res) {
+        $scope.metainf.count++;
         $scope.updatePageIndex();
 	  		$location.path('/');
 	  	});
@@ -115,7 +112,9 @@ Ctrl = (function() {
     	var confirm = $window.confirm('Delete '+$scope.bookmark.name+ ' bookmark?');
     	if(confirm) {
     		$scope.bookmark.$delete({param1: $routeParams.id}, function(res) {
-    			$location.path('/');
+    			$scope.metainf.count--;
+          $scope.updatePageIndex();
+          $location.path('/');
     		});
     	}
     }

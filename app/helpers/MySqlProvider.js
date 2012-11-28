@@ -187,12 +187,14 @@ var MySqlProvider = (function(){
     
     self = this;
 
-    params = [(page*size), size];
+    if(page <= 0) page = 1;
+
+    params = [((page-1)*size), size];
     
     result = {
       data: [],
       count: 0,
-      page: 0,
+      page: 1,
       pages: 1
     };
 

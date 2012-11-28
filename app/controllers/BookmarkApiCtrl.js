@@ -9,7 +9,7 @@ function toNumber(value) {
 exports.getAll = function(req, res) {
   var page, size, opts;
 
-  page = req.param('page') || 0; 
+  page = req.param('page') || 1; 
   size = req.param('size') || 10;
 
   opts = {

@@ -47,7 +47,7 @@ var BookmarkModel = (function(db) {
     var result = {
       data: [],
       count: 0,
-      page: 0,
+      page: 1,
       pages: 1
     };
 
@@ -64,11 +64,13 @@ var BookmarkModel = (function(db) {
 
     //---
     var bookmarksPage = [];
-    var i, count, length, skip, limit, flag;
+    var i, count, length, limit, flag;
+
+    if(opts.page <= 0) opts.page = 1;
 
     count = 0;
     length = bookmarks.length;
-    i = skip = (opts.page * opts.size);
+    i = ((opts.page-1) * opts.size);
     limit = opts.size;
 
     if(i < length) {
@@ -96,10 +98,6 @@ var BookmarkModel = (function(db) {
     result.pages = Math.ceil(length / opts.size);
     //---
 
-    //return bookmarks;
-
-    //cb(null, bookmarks);
-
     cb(null, result);
   };
 
@@ -111,16 +109,12 @@ var BookmarkModel = (function(db) {
       vo.id = id;
     }
 
-    //return vo;
-
     cb(null, vo);
   };
 
   classDef.prototype.insert = function(vo, cb) {
     db.bookmarks.push(vo);
     
-    //return vo;
-
     cb(null, vo);
   };
 
@@ -133,8 +127,6 @@ var BookmarkModel = (function(db) {
       flag = false;
     }
 
-    //return flag;
-
     cb(null, flag);  
   };
 
@@ -146,8 +138,6 @@ var BookmarkModel = (function(db) {
       } else {
         flag = false;
       }
-
-      //return flag;
 
       cb(null, flag); 
   };

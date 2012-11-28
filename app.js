@@ -37,11 +37,11 @@ app.configure('development', function(){
 
 app.get('/', urlCtrl.index);
 
-app.get('/api/bookmarks', bookmarkAPI.getAll);
-app.get('/api/bookmarks/:id', bookmarkAPI.getById);
-app.post('/api/bookmarks', bookmarkAPI.insert);
-app.put('/api/bookmarks/:id', bookmarkAPI.update);
-app.delete('/api/bookmarks/:id', bookmarkAPI.remove);
+app.get('/rest/bookmarks', bookmarkAPI.getAll);
+app.get('/rest/bookmarks/:id', bookmarkAPI.getById);
+app.post('/rest/bookmarks', bookmarkAPI.insert);
+app.put('/rest/bookmarks/:id', bookmarkAPI.update);
+app.delete('/rest/bookmarks/:id', bookmarkAPI.remove);
 
 
 http.createServer(app).listen(app.get('port'), function(){
