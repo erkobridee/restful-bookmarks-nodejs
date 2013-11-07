@@ -35,7 +35,7 @@ app.configure('development', function(){
 });
 
 
-app.get('/', urlCtrl.index);
+//app.get('/', urlCtrl.index);
 
 app.get('/rest/bookmarks', bookmarkAPI.getAll);
 app.get('/rest/bookmarks/:id', bookmarkAPI.getById);
