@@ -31,12 +31,9 @@ angular.module('app').service(
   };
 
   // public functions
-  ClassDef.prototype.setDefaultPageSize = function(value) {
+  ClassDef.prototype.resetPageSize = function(value) {
+    this.metainf.lastPage = 1;
     this.metainf.pageSize = value;
-  };
-
-  ClassDef.prototype.getDefaultPageSize = function() {
-    return this.metainf.pageSize;
   };
 
   //---
