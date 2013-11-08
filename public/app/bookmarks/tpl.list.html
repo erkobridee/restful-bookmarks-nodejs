@@ -2,15 +2,72 @@
   <div class="row">&nbsp;</div>
 
   <div class="row">  
+    <!--
     <a href="#bookmarks/search">
       <i class="glyphicon glyphicon-search"></i> Search
     </a> | 
+    -->
     <a href="#bookmarks/new">
       <i class="glyphicon glyphicon-plus-sign"></i> New
-    </a>    
+    </a>
+
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+    <span>
+      <button         
+        type="button" 
+        title="{{filterBtnLabel}}"
+        ng-click="showFilterBtn()"
+        class="btn btn-sm btn-default"
+        ng-class="{'active': showFilter}">
+        <i class="glyphicon glyphicon-filter"></i> {{filterBtnLabel}}
+      </button>
+    </span>
+
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+    <span ng-show="bookmarks.pages > 1">
+      Pages: <span class="badge">{{bookmarks.pages}}</span> &nbsp;&nbsp;
+    </span>
+    <span>
+      Total: <span class="badge">{{bookmarks.count}}</span> 
+    </span>
+
+    <div class="visible-xs">&nbsp;</div>
+
+    <div class="col-md-3 pull-right">
+      <form 
+        name="updateSizeForm" 
+        ng-submit="updatePageSizeFormSubmit()"
+        role="form" novalidate> 
+        <div class="input-group input-group-sm">      
+          <span class="input-group-addon">Page Size</span>
+          <input 
+            class="form-control"
+            type="number"
+            name="pageSize"
+            ng-model="pageSize" 
+            min="{{pageMinSize}}" max="{{pageMaxSize}}"
+            placeholder="min value 2">
+          <span class="input-group-btn">
+              <button 
+                ng-click="updatePageSize()"
+                ng-disabled="updatePageSizeInvalid(pageSize)" 
+                class="btn btn-default" type="button">Update</button>
+          </span>          
+        </div>
+        <div>
+          <p ng-show="updateSizeForm.pageSize.$error.min || updateSizeForm.pageSize.$error.max" 
+            class="text-center">
+            The value must be in range {{pageMinSize}} to {{pageMaxSize}}!
+          </p>
+        </div>
+      </form>
+    </div>
+
   </div>
 
   <div class="row">&nbsp;</div>
 
-  <div class="row" ng-include="'app/bookmarks/tpl.bookmarks-table.html'"></div>
+  <div class="row" ng-include="'app/bookmarks/tpl.table.html'"></div>
 </div>
