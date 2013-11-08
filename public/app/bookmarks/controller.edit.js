@@ -4,10 +4,10 @@ angular.module('app').controller(
   'BookmarksEditCtrl',
 
   // dependencies injection
-  ['$scope', 'BookmarksResource', '$routeParams', '$window', '$location', 
+  ['$rootScope', '$scope', 'BookmarksResource', '$routeParams', '$location', 
 
 // controller definition
-function ($scope, resource, $routeParams, $window, $location) {
+function ($rootScope, $scope, resource, $routeParams, $location) {
 
   $scope.title = 'Edit Bookmark : ' + $routeParams.id;
 
@@ -17,7 +17,8 @@ function ($scope, resource, $routeParams, $window, $location) {
 
   $scope.save = function() {
     $scope.bookmark.$update({id: $routeParams.id}, function(res) {
-      $location.path('/');
+      $rootScope.$emit('bookmarks:update:event', 'updated');
+      //$location.path('/bookmark');
     });
   };
   
@@ -34,7 +35,8 @@ function ($scope, resource, $routeParams, $window, $location) {
   $scope.destroy = function() {
     $scope.bookmark.$delete({id: $routeParams.id}, function(res) {
       $scope.showConfirm = false;
-      $location.path('/');
+      $rootScope.$emit('bookmarks:remove:event', 'removed');
+      //$location.path('/bookmark');
     });
   };
 
