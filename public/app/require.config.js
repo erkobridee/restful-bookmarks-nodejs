@@ -15,33 +15,37 @@ require({
 
     //--- @begin app files
 
-    'app/main/rangeFilter': {
+    'app/main/filter.range': {
       deps: ['app/main/module']
     },
 
-    'app/main/menuConfig': {
+    'app/main/factory.menu.config': {
       deps: ['app/main/module']
     },
 
-    'app/main/paginationService': {
+    'app/main/service.pagination': {
       deps: ['app/main/module']
     },
 
     'app/main/controller': {
-      deps: ['app/main/menuConfig']
+      deps: ['app/main/factory.menu.config']
     },
 
       //--- @begin: bookmarks
       'app/bookmarks/resource': {
         deps: ['app/main/module']
-      },
-      'app/bookmarks/resource.search': {
+      },      
+      /*'app/bookmarks/resource.search': {
         deps: ['app/main/module']
-      },
+      },*/
+
+      /*'app/bookmarks/controller.search': {
+        deps: ['app/bookmarks/resource.search']
+      },*/
       'app/bookmarks/controller.list': {
         deps: [
           'app/bookmarks/resource',
-          'app/main/paginationService' // TODO : review
+          'app/main/service.pagination' // TODO: review
         ]
       },
       'app/bookmarks/controller.new': {
@@ -49,10 +53,7 @@ require({
       },
       'app/bookmarks/controller.edit': {
         deps: ['app/bookmarks/resource']
-      },
-      'app/bookmarks/controller.search': {
-        deps: ['app/bookmarks/resource.search']
-      },
+      },      
       //--- @edit: bookmarks
 
 
@@ -60,16 +61,16 @@ require({
 
     'app/main/routes': {
       deps: [ // TODO: review and add app controllers ref's
+        //'app/bookmarks/controller.search',
         'app/bookmarks/controller.list',
         'app/bookmarks/controller.new',
-        'app/bookmarks/controller.edit',
-        'app/bookmarks/controller.search'
+        'app/bookmarks/controller.edit'
       ]
     },
 
     'app/main/start': {
       deps: [ // TODO: review and add app routes and view componentes ref's
-        'app/main/rangeFilter',
+        'app/main/filter.range',
         'app/main/controller',
         'app/main/routes'     
       ]

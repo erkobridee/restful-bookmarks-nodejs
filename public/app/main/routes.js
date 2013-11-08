@@ -16,13 +16,13 @@ function ($routeProvider) {
         templateUrl: 'app/bookmarks/tpl.list.html'
       }
     )
-    .when(
+    /*.when(
       '/bookmarks/search',
       {
         controller: 'BookmarksSearchCtrl',
         templateUrl: 'app/bookmarks/tpl.search.html'
       }
-    )
+    )*/
     .when(
       '/bookmarks/new',
       {
