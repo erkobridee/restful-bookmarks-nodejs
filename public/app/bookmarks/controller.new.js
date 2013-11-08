@@ -4,10 +4,10 @@ angular.module('app').controller(
   'BookmarksNewCtrl',
 
   // dependencies injection
-  ['$rootScope', '$scope', 'BookmarksResource', '$location',
+  ['$rootScope', '$scope', 'BookmarksResource',
 
 // controller definition
-function ($rootScope, $scope, resource, $location) {
+function ($rootScope, $scope, resource) {
 
   $scope.title = 'New Bookmark';
 
@@ -21,7 +21,6 @@ function ($rootScope, $scope, resource, $location) {
   $scope.save = function() {
     $scope.bookmark.$save(function(res) {
       $rootScope.$emit('bookmarks:add:event', 'added');
-      //$location.path('/bookmark');
     });
   };
 

@@ -17,20 +17,20 @@ function ($rootScope, $scope, $location, resource, pagination) {
 
   $rootScope.$on('bookmarks:add:event', function(event, value) {
     event.preventDefault(); event.stopPropagation();
-    console.log('bookmarks:add:event - ' + value);
+    //console.log('bookmarks:add:event - ' + value);
     pagination.addCheck();
     updateLocation();
   });
 
   $rootScope.$on('bookmarks:update:event', function(event, value) {
     event.preventDefault(); event.stopPropagation();
-    console.log('bookmarks:add:event - ' + value);
+    //console.log('bookmarks:add:event - ' + value);
     updateLocation();
   });
 
   $rootScope.$on('bookmarks:remove:event', function(event, value) {
     event.preventDefault(); event.stopPropagation();
-    console.log('bookmarks:remove:event - ' + value);
+    //console.log('bookmarks:remove:event - ' + value);
     pagination.removeCheck();
     updateLocation();
   });
@@ -55,7 +55,7 @@ function ($rootScope, $scope, $location, resource, pagination) {
         size: pagination.getPageSize()
       }, 
       function(result) {
-        console.log(result);
+        //console.log(result);
         $scope.bookmarks = result;
 
         pagination.updateMetainf(
