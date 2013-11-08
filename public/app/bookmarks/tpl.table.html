@@ -1,9 +1,19 @@
 <div ng-show="showFilter">
+
   <div class="input-group">
     <span class="input-group-addon">
       <i class="glyphicon glyphicon-filter"></i>
     </span>
-    <input type="text" class="form-control" placeholder="Text" ng-model="search">
+    <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Text" 
+      ng-model="filter.search">
+    <span class="input-group-btn">
+      <button 
+        ng-click="clearFilter()"
+        class="btn btn-default" type="button">Clear</button>
+    </span> 
   </div>
 
   <div class="row">&nbsp;</div>
@@ -20,7 +30,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="bookmark in bookmarks.data | filter:search">
+      <tr ng-repeat="bookmark in bookmarks.data | filter:filter.search">
         <td class="visible-xs">
           <a href="#bookmarks/edit/{{bookmark.id}}"><i class="glyphicon glyphicon-pencil"></i></a>
         </td>

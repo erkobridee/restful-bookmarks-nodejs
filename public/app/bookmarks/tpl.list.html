@@ -13,11 +13,11 @@
 
     <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
-    <span>
+    <span ng-show="showFilterBtn">
       <button         
         type="button" 
         title="{{filterBtnLabel}}"
-        ng-click="showFilterBtn()"
+        ng-click="showFilterBtnClick()"
         class="btn btn-sm btn-default"
         ng-class="{'active': showFilter}">
         <i class="glyphicon glyphicon-filter"></i> {{filterBtnLabel}}
@@ -50,10 +50,10 @@
             min="{{pageMinSize}}" max="{{pageMaxSize}}"
             placeholder="min value 2">
           <span class="input-group-btn">
-              <button 
-                ng-click="updatePageSize()"
-                ng-disabled="updatePageSizeInvalid(pageSize)" 
-                class="btn btn-default" type="button">Update</button>
+            <button 
+              ng-click="updatePageSize()"
+              ng-disabled="updatePageSizeInvalid(pageSize)" 
+              class="btn btn-default" type="button">Update</button>
           </span>          
         </div>
         <div>

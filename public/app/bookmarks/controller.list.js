@@ -11,6 +11,14 @@ function ($rootScope, $scope, $location, resource, pagination) {
 
   //---
 
+  var config = {
+    pageMinSize: 2,
+    pageMaxSize: 50,
+    showFilterBtnMinlength: 5
+  };
+
+  //---
+
   function updateLocation() {
     $location.path('/bookmarks');
   }
@@ -36,14 +44,25 @@ function ($rootScope, $scope, $location, resource, pagination) {
   });
 
   //---
-
+  $scope.filter = { search: '' };
   $scope.showFilter = false;
+
+  function checkShowfilterBtn() {
+    return ($scope.pageSize < config.showFilterBtnMinlength) ? false : true;
+  }
+
+  $scope.showFilterBtn = checkShowfilterBtn();
 
   $scope.filterBtnLabel = 'Show filter';
 
-  $scope.showFilterBtn = function() {
+  $scope.showFilterBtnClick = function() {
     $scope.showFilter = !$scope.showFilter;
     $scope.filterBtnLabel = ($scope.showFilter ? 'Hide' : 'Show') + ' filter';
+    if(!$scope.showFilter) $scope.clearFilter();
+  }
+
+  $scope.clearFilter = function() {
+    $scope.filter = { search: '' };
   }
 
   //---
@@ -56,7 +75,7 @@ function ($rootScope, $scope, $location, resource, pagination) {
       }, 
       function(result) {
         //console.log(result);
-        $scope.bookmarks = result;
+        $scope.bookmarks = result;        
 
         pagination.updateMetainf(
           result.count,
@@ -64,7 +83,9 @@ function ($rootScope, $scope, $location, resource, pagination) {
           result.page,
           result.pages
         );
-      }
+
+        $scope.showFilterBtn = checkShowfilterBtn();
+      }      
     );
   }
 
@@ -80,8 +101,8 @@ function ($rootScope, $scope, $location, resource, pagination) {
   //---
 
   $scope.pageSize = pagination.getPageSize();
-  $scope.pageMinSize = 2;
-  $scope.pageMaxSize = 50;
+  $scope.pageMinSize = config.pageMinSize;
+  $scope.pageMaxSize = config.pageMaxSize;
 
   $scope.updatePageSizeInvalid = function(pageSize) {
     var flag = false;
@@ -98,6 +119,9 @@ function ($rootScope, $scope, $location, resource, pagination) {
   };
 
   $scope.updatePageSize = function() {
+    // check if filter is visible
+    if($scope.showFilter) $scope.showFilterBtnClick();
+
     pagination.resetPageSize($scope.pageSize);
     loadData(pagination.getNextPage());
   }
