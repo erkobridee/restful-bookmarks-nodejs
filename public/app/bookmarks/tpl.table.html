@@ -20,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="bookmark in bookmarks.data | filter:search | orderBy:'name'">
+      <tr ng-repeat="bookmark in bookmarks.data | filter:search">
         <td class="visible-xs">
           <a href="#bookmarks/edit/{{bookmark.id}}"><i class="glyphicon glyphicon-pencil"></i></a>
         </td>
