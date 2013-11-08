@@ -4,10 +4,36 @@ angular.module('app').controller(
   'BookmarksListCtrl',
 
   // dependencies injection
-  ['$scope', 'BookmarksResource', 'PaginationService',
+  ['$rootScope', '$scope', '$location', 'BookmarksResource', 'PaginationService',
 
 // controller definition
-function ($scope, resource, pagination) {
+function ($rootScope, $scope, $location, resource, pagination) {
+
+  //---
+
+  function updateLocation() {
+    $location.path('/bookmarks');
+  }
+
+  $rootScope.$on('bookmarks:add:event', function(event, value) {
+    event.preventDefault(); event.stopPropagation();
+    console.log('bookmarks:add:event - ' + value);
+    pagination.addCheck();
+    updateLocation();
+  });
+
+  $rootScope.$on('bookmarks:update:event', function(event, value) {
+    event.preventDefault(); event.stopPropagation();
+    console.log('bookmarks:add:event - ' + value);
+    updateLocation();
+  });
+
+  $rootScope.$on('bookmarks:remove:event', function(event, value) {
+    event.preventDefault(); event.stopPropagation();
+    console.log('bookmarks:remove:event - ' + value);
+    pagination.removeCheck();
+    updateLocation();
+  });
 
   //---
 
@@ -29,12 +55,13 @@ function ($scope, resource, pagination) {
         size: pagination.getPageSize()
       }, 
       function(result) {
-        //console.log(result);
+        console.log(result);
         $scope.bookmarks = result;
 
         pagination.updateMetainf(
           result.count,
           result.data.length,
+          result.page,
           result.pages
         );
       }
@@ -45,8 +72,8 @@ function ($scope, resource, pagination) {
   
   $scope.setPage = function() {
     if((this.n+1) != $scope.bookmarks.page) {
-      pagination.setLastPage(this.n+1);
-      loadData(pagination.getLastPage());
+      pagination.setNextPage(this.n+1);
+      loadData(pagination.getNextPage());
     }
   };
 
@@ -72,7 +99,7 @@ function ($scope, resource, pagination) {
 
   $scope.updatePageSize = function() {
     pagination.resetPageSize($scope.pageSize);
-    loadData(pagination.getLastPage());
+    loadData(pagination.getNextPage());
   }
 
   $scope.updatePageSizeFormSubmit = function() {
@@ -82,6 +109,6 @@ function ($scope, resource, pagination) {
 
   //---
 
-  loadData(pagination.getLastPage());
+  loadData(pagination.getNextPage());
 
 }]);

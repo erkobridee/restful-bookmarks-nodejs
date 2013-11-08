@@ -13,6 +13,18 @@ angular.module('app').service(
   // private 
   var $rootScope;
 
+  // private functions
+  function defaultMetainf(_pageSize) {
+    return {
+      pageSize: _pageSize || 10,
+      count: 0,
+      nextPage: 1,
+      lastPage: 0,
+      lastPageSize: 0,
+      totalPages: 0
+    };
+  }
+
 
   // constructor
   // inject dependencies when instantiate new object
@@ -22,18 +34,11 @@ angular.module('app').service(
 
 
   // public attributes
-  ClassDef.prototype.metainf = {
-    pageSize: 10,
-    count: 0,
-    lastPage: 1,
-    lastPageSize: 0,
-    totalPages: 0
-  };
+  ClassDef.prototype.metainf = defaultMetainf();
 
   // public functions
   ClassDef.prototype.resetPageSize = function(value) {
-    this.metainf.lastPage = 1;
-    this.metainf.pageSize = value;
+    this.metainf = defaultMetainf(value);
   };
 
   //---
@@ -44,27 +49,44 @@ angular.module('app').service(
 
   //---
 
-  ClassDef.prototype.setLastPage = function(value) {
-    this.metainf.lastPage = value;
+  ClassDef.prototype.setNextPage = function(value) {
+    this.metainf.nextPage = value;
   };
 
-  ClassDef.prototype.getLastPage = function() {
-    return this.metainf.lastPage; 
+  ClassDef.prototype.getNextPage = function() {
+    return this.metainf.nextPage; 
   };
 
   //---
 
-  ClassDef.prototype.updateMetainf = function(count, lastPageSize, totalPages) {
+  ClassDef.prototype.updateMetainf = function(count, lastPageSize, lastPage, totalPages) {
     this.metainf.count = count;
     this.metainf.lastPageSize = lastPageSize;
+    this.metainf.lastPage = lastPage;
     this.metainf.totalPages = totalPages;
   };
 
   //--- 
 
-  ClassDef.prototype.updatePageIndex = function() {
-    var pages = Math.ceil(this.metainf.count / this.metainf.pageSize);
-    this.metainf.lastPage = pages;
+  ClassDef.prototype.addCheck = function() {
+    var modFlag = ((this.metainf.count % this.getPageSize()) == 0);
+
+    if(modFlag) {
+      this.setNextPage(this.metainf.totalPages+1);
+    } else {
+      this.setNextPage(this.metainf.totalPages);
+    }
+  };
+
+  ClassDef.prototype.removeCheck = function() {
+    if(
+      (this.metainf.page == this.metainf.pages) &&
+      (this.metainf.lastPageSize == 1)
+    ) {
+      var nextPage = this.metainf.totalPages-1;
+      if(nextPage <= 0) nextPage = 0;
+      this.setNextPage(nextPage);
+    }
   };
 
   //---
