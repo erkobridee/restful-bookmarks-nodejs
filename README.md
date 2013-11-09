@@ -1,30 +1,37 @@
-RESTful Bookmarks Node.js  [![Node Dependencies](https://david-dm.org/erkobridee/restful-bookmarks-nodejs.png)](https://david-dm.org/erkobridee/restful-bookmarks-nodejs)
-=================================
+# RESTful Bookmarks Node.js  
+
+[![Node Dependencies](https://david-dm.org/erkobridee/restful-bookmarks-nodejs.png)](https://david-dm.org/erkobridee/restful-bookmarks-nodejs)
 
 Exemplo de aplicação para salvar links, onde a interface utiliza AngularJS + Twitter Bootstrap e o lado do servidor utilizado o Node.js + Express.js para disponibilizar um serviço de dados RESTful via json.
 
 
-Utilizado neste projeto
------------------------
+## Utilizado neste projeto
 
 * Ambiente de desenvolvimento
+
   * [Sublime Text](http://www.sublimetext.com/) 2
+  
+  	* [Sublime Text Keyboard Shortcut Cheat Sheet | Sweetmeat](http://sweetme.at/2013/08/08/sublime-text-keyboard-shortcuts/)
+  
+  	* [Sublime Package Control](http://wbond.net/sublime_packages/package_control) 
+  	
+  	* [Sublime Terminal – a Sublime Text 2 Package | wbond](http://wbond.net/sublime_packages/terminal)
+
+	* [Write HTML & CSS Faster with Emmet | Hongkiat.com](http://www.hongkiat.com/blog/html-css-faster-emmet/)
+	
 
 * Cliente
-  * [AngularJS](http://angularjs.org/) 1.0.1
-  * [Twitter Bootstrap](twitter.github.com/bootstrap) 2.0.4
+  * [AngularJS](http://angularjs.org/) 1.1.5
+  * [Twitter Bootstrap](twitter.github.com/bootstrap) 3.x
 
 * Servidor
-  * [Node.js](http://nodejs.org/) v0.8.7
+  * [Node.js](http://nodejs.org/) v0.8+
   * [Express.js](http://expressjs.com/) 3.0.3
-  * [Jade](http://jade-lang.com/) (outra sintaxe para gerar HTML)
-  * [Stylus](http://learnboost.github.com/stylus/) (outra sintaxe para gerar CSS)
 
 Post que auxiliou na montagem desse projeto: [Writing an AngularJS App with an Express + Node.js Backend](http://briantford.com/blog/angular-express.html). Uma leitura adicional muito útil e recomendável para se trabalhar com JavaScript : [JavaScript Patterns Collection](http://shichuan.github.com/javascript-patterns/)
   
 
-Montando o ambiente local para uso desse projeto
-------------------------------------------------
+## Montando o ambiente local para uso desse projeto
 
 Feito o download/clone do projeto para a sua máquina local, realize o respectivos passos a seguir:
 
@@ -41,8 +48,8 @@ Feito o download/clone do projeto para a sua máquina local, realize o respectiv
 5. Agora é só codificar :)
 
 
-Quanto ao RESTful do projeto
-----------------------------
+## Quanto ao RESTful do projeto
+
 A definição do método a ser executado é definido no cabeçalho da requisição enviada para o servidor.
 
 * **GET** - recupera 1 ou mais bookmarks
@@ -64,12 +71,12 @@ A definição do método a ser executado é definido no cabeçalho da requisiç�
   * [.../rest/bookmarks/{id}]() 
 
 
-Passos para gerar a estrutura inicial do projeto
-------------------------------------------------
+## Passos para gerar a estrutura inicial do projeto
 
 Foram utilizadas as instruções [Using express(1) to generate an app](http://expressjs.com/guide.html#executable)
 
-<pre><code>$ express --css stylus restful-bookmarks-nodejs
+```
+$ express --css stylus restful-bookmarks-nodejs
 
 create : restful-bookmarks-nodejs
 create : restful-bookmarks-nodejs/package.json
@@ -89,11 +96,13 @@ install dependencies:
   $ cd restful-bookmarks-nodejs && npm install
 
 run the app:
-  $ node app</code></pre>
+  $ node app
+```
 
 Porém, a estrutura utilizada para o projeto foi modificada para:
 
-<pre><code>restful-bookmarks-nodejs/
+```
+restful-bookmarks-nodejs/
   package.json
   app.js
   app/
@@ -120,17 +129,11 @@ Porém, a estrutura utilizada para o projeto foi modificada para:
       layout.jade
       index.jade
   public/
-    js/
-      app.js
-      controllers.js
-      services.js
-    tpl/
-      list.html
-      edit.html</code></pre>
+	# frontend - código da app em angular.js 
+```
 
 
-Histórico
-----------------------------
+## Histórico
 
 * [v0](https://github.com/erkobridee/restful-bookmarks-nodejs/tree/v0)
 
