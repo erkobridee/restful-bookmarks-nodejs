@@ -4,6 +4,7 @@
 
 Exemplo de aplicação para salvar links, onde a interface utiliza AngularJS + Twitter Bootstrap e o lado do servidor utilizado o Node.js + Express.js para disponibilizar um serviço de dados RESTful via json.
 
+* [Histório / Alterações](https://github.com/erkobridee/restful-bookmarks-nodejs/releases)
 
 ## Utilizado neste projeto
 
@@ -131,35 +132,3 @@ restful-bookmarks-nodejs/
   public/
 	# frontend - código da app em angular.js 
 ```
-
-
-## Histórico
-
-* [v0](https://github.com/erkobridee/restful-bookmarks-nodejs/tree/v0)
-
-versão inicial e básica
-
-* [v1](https://github.com/erkobridee/restful-bookmarks-nodejs/tree/v1)
-
-versão organizada e utilizando uma base de dados fake em memória
-
-* [v2](https://github.com/erkobridee/restful-bookmarks-nodejs/tree/v2)
-
-  * versão com suporte para acesso aos dados em um base mysql, ver o diretório /app/models/mysql
-
-  * para utilizar o mysql, altere o atributo `use` do arquivo: /app/models/BookmarkModel.js
-
-* [v3](https://github.com/erkobridee/restful-bookmarks-nodejs/tree/v3)
-
-  * versão com suporte para o [mongodb](http://www.mongodb.org/), através do mongoosejs, ver o diretório /app/models/mongodb
-
-  * para utilizar o mongodb, altere o atributo `use` do arquivo: /app/models/BookmarkModel.js
-
-* [v4](https://github.com/erkobridee/restful-bookmarks-nodejs/tree/v4)
-
-  * suporte para paginação de dados
-
-	  * parâmetros: **page** - define o índice da página, iniciando em 1 e **size** - quantidade de itens por página | valores padrão definidos no lado do servidor : page = 1 e size = 10
-  
-  * verifique a *function* **getAll** do arquivo: */app/controllers/BookmarkApiCtrl.js*
-
