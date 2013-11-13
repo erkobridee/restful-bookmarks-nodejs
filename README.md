@@ -6,6 +6,43 @@ Exemplo de aplicação para salvar links, onde a interface utiliza AngularJS + T
 
 * [Histório / Alterações](https://github.com/erkobridee/restful-bookmarks-nodejs/releases)
 
+
+## Guia de instalação
+
+### Clone
+
+```bash
+$ git clone https://github.com/erkobridee/restful-bookmarks-nodejs.git
+$ cd restful-bookmarks-nodejs/
+```
+
+
+### Montando o ambiente local para uso desse projeto
+
+Feito o download/clone do projeto para a sua máquina local, realize o respectivos passos a seguir:
+
+1. Vá até o diretório do projeto
+2. Execute o comando:
+
+  `npm install`
+
+3. Para executar, use o comando:
+
+  `node app`
+
+
+## Desenvolvimento com Sublime Text
+
+1. Para o desenvolvimento, vá até o Sublime Text, *File > Open...* e selecione o diretório do projeto
+
+2. Agora é só codificar :)
+
+
+## Licença
+
+MIT : [erkobridee.mit-license.org](http://erkobridee.mit-license.org)
+
+
 ## Utilizado neste projeto
 
 * Ambiente de desenvolvimento
@@ -32,30 +69,13 @@ Exemplo de aplicação para salvar links, onde a interface utiliza AngularJS + T
 Post que auxiliou na montagem desse projeto: [Writing an AngularJS App with an Express + Node.js Backend](http://briantford.com/blog/angular-express.html). Uma leitura adicional muito útil e recomendável para se trabalhar com JavaScript : [JavaScript Patterns Collection](http://shichuan.github.com/javascript-patterns/)
   
 
-## Montando o ambiente local para uso desse projeto
-
-Feito o download/clone do projeto para a sua máquina local, realize o respectivos passos a seguir:
-
-1. Vá até o diretório do projeto
-2. Execute o comando:
-
-  `npm install`
-
-3. Para executar, use o comando:
-
-  `node app`
-
-4. Para o desenvolvimento, vá até o Sublime Text, *File > Open...* e selecione o diretório do projeto
-5. Agora é só codificar :)
-
-
 ## Quanto ao RESTful do projeto
 
 A definição do método a ser executado é definido no cabeçalho da requisição enviada para o servidor.
 
 * **GET** - recupera 1 ou mais bookmarks
 
-  * [.../rest/bookmarks/]() - lista todos os bookmarks | agora som suporte para paginação *?page=${num}&size=${length}*
+  * [.../rest/bookmarks/]() - lista todos os bookmarks | agora som suporte para paginação `?page=${num}&size=${length}`
 
   * [.../rest/bookmarks/{id}]() - retorna o respectivo bookmark pelo seu ID
 
