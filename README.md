@@ -81,11 +81,11 @@ A definição do método a ser executado é definido no cabeçalho da requisiç�
 
 * **POST** - insere um novo
 
-  * [.../rest/bookmarks/]() - enviado via post
+  * [.../rest/bookmarks/]() - enviado no corpo da requisição
 
 * **PUT** - atualiza um existente
 
-  * [.../rest/bookmarks/{id}]() - enviado via post 
+  * [.../rest/bookmarks/{id}]() - enviado no corpo da requisição
 
 * **DELETE** - remove 1 bookmark pelo ID
 
