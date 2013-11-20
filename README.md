@@ -59,7 +59,7 @@ MIT : [erkobridee.mit-license.org](http://erkobridee.mit-license.org)
 	
 
 * Cliente
-  * [AngularJS](http://angularjs.org/) 1.1.5
+  * [AngularJS](http://angularjs.org/) 1.2.1
   * [Twitter Bootstrap](twitter.github.com/bootstrap) 3.x
 
 * Servidor
