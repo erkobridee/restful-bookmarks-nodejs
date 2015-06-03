@@ -11,7 +11,7 @@ var express = require('express'),
     path = require('path'),
     bookmarkAPI = require('./app/controllers/BookmarkApiCtrl');
 
-var app = express();
+var app = module.exports = express();
 
 //---
 // @begin: configs
@@ -35,11 +35,3 @@ app.put('/rest/bookmarks/:id', bookmarkAPI.update);
 app.delete('/rest/bookmarks/:id', bookmarkAPI.remove);
 
 //---
-
-var server = app.listen(process.env.PORT || 9000, function () {
-
-  var port = server.address().port;
-
-  console.log("Express server listening on port " + port);
-
-});

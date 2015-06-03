@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "outdated": "npm outdated --depth=0",
-    "start": "node app"
+    "start": "node server"
   },
   "dependencies": {
     "async": "*",
