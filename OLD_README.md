@@ -1,8 +1,5 @@
 # RESTful Bookmarks Node.js
 
-> **TODO:** rewrite in english
-
-
 [![Node Dependencies](https://david-dm.org/erkobridee/restful-bookmarks-nodejs.png)](https://david-dm.org/erkobridee/restful-bookmarks-nodejs)
 
 Exemplo de aplicação para salvar links, onde a interface utiliza AngularJS + Twitter Bootstrap e o lado do servidor utilizado o Node.js + Express.js para disponibilizar um serviço de dados RESTful via json.
