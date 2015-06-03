@@ -4,29 +4,28 @@
  */
 
 var express = require('express'),
+    morgan = require('morgan'), // https://github.com/expressjs/morgan
+    bodyParser = require('body-parser'),
+    multer = require('multer'),
     http = require('http'),
     path = require('path'),
     bookmarkAPI = require('./app/controllers/BookmarkApiCtrl');
 
 var app = express();
 
-app.configure(function(){
-  //app.set('port', process.env.PORT || 3000);
-  app.set('port', process.env.PORT || 9000);
-  app.use(express.favicon());
-  app.use(express.logger('dev'));
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.static(path.join(__dirname, 'public')));
-});
+//---
+// @begin: configs
 
-//--
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.configure('development', function(){
-  app.use(express.errorHandler());
-});
+app.use(morgan('tiny'));
 
+// http://expressjs.com/4x/api.html#req.body
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(multer()); // for parsing multipart/form-data
+
+// @end: configs
 //---
 
 app.get('/rest/bookmarks', bookmarkAPI.getAll);
@@ -37,6 +36,10 @@ app.delete('/rest/bookmarks/:id', bookmarkAPI.remove);
 
 //---
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+var server = app.listen(process.env.PORT || 9000, function () {
+
+  var port = server.address().port;
+
+  console.log("Express server listening on port " + port);
+
 });

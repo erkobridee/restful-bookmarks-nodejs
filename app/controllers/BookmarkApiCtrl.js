@@ -9,8 +9,8 @@ function toNumber(value) {
 exports.getAll = function(req, res) {
   var page, size, opts;
 
-  page = req.param('page') || 1; 
-  size = req.param('size') || 10;
+  page = req.query.page || 1; 
+  size = req.query.size || 10;
 
   opts = {
     page: toNumber(page),
