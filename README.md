@@ -1,4 +1,7 @@
-# RESTful Bookmarks Node.js  
+# RESTful Bookmarks Node.js
+
+> **TODO:** rewrite in english
+
 
 [![Node Dependencies](https://david-dm.org/erkobridee/restful-bookmarks-nodejs.png)](https://david-dm.org/erkobridee/restful-bookmarks-nodejs)
 
