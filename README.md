@@ -4,6 +4,8 @@ Basic example of bookmarks application, which uses Angular.js, Bootstrap and Exp
 
 > The main purpose of this project was show communication between Angular.js and Node.js backend through REST JSON data.
 
+* **TODO:** review frontend and backend code
+
 
 ## Prerequisites
 
