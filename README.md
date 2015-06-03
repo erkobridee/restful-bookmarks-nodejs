@@ -66,8 +66,8 @@ MIT : [erkobridee.mit-license.org](http://erkobridee.mit-license.org)
   * [Twitter Bootstrap](twitter.github.com/bootstrap) 3.x
 
 * Servidor
-  * [Node.js](http://nodejs.org/) v0.8+
-  * [Express.js](http://expressjs.com/) 3.0.3
+  * [Node.js](http://nodejs.org/) v0.10+
+  * [Express.js](http://expressjs.com/) 4.x
 
 Post que auxiliou na montagem desse projeto: [Writing an AngularJS App with an Express + Node.js Backend](http://briantford.com/blog/angular-express.html). Uma leitura adicional muito útil e recomendável para se trabalhar com JavaScript : [JavaScript Patterns Collection](http://shichuan.github.com/javascript-patterns/)
   
