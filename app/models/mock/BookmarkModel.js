@@ -5,7 +5,7 @@ var MockDB = (function(){
 
   MockDB.prototype.bookmarks = [
     {
-      "name": "Twitter",
+      "name": "Twitter 2",
       "description": "@ErkoBridee",
       "url": "https://twitter.com/erkobridee"
     },
@@ -58,6 +58,7 @@ var BookmarkModel = (function(db) {
         id:i,
         name: bookmark.name,
         description: bookmark.description,
+        keywords: bookmark.keywords,
         url: bookmark.url
       });
     });

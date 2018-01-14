@@ -11,9 +11,11 @@ exports.getAll = function(req, res) {
 
   page = req.query.page || 1; 
   size = req.query.size || 10;
+  searchText = req.query.searchText || undefined;
 
   opts = {
     page: toNumber(page),
+    searchText: searchText,
     size: toNumber(size)
   };
   

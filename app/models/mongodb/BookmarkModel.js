@@ -4,12 +4,28 @@ var mongoose = require('mongoose')
   , Schema = mongoose.Schema
 ;
 
+var keywordExtractor = require("keyword-extractor");
+var extractorOptions = {
+    language:"english",
+    remove_digits: false,
+    return_changed_case:true,
+    remove_duplicates: true,
+    return_chained_words: false,
+};
+var _ = require('lodash');
+
 //--- bookmark schema definition
 var BookmarkSchema = new Schema({
   name: {type: String, required: true},
   description: {type: String},
+  keywords: {type: String},
   url: {type: String, required: true}
 });
+
+
+
+// add a text index to the keywords array 
+BookmarkSchema.index({ keywords: 'text' });
 
 // show id virtual on response
 //https://github.com/LearnBoost/mongoose/issues/1137
@@ -20,7 +36,8 @@ BookmarkSchema.set('toObject', { getters: true });
 mongoose.model('Bookmark', BookmarkSchema);
 
 //--- connect to mongodb
-mongoose.connect('mongodb://localhost/bookmark-app');
+//mongoose.connect('mongodb://localhost/bookmark-app');
+mongoose.connect('mongodb://ravidasari:abc#123@ds155577.mlab.com:55577/chatbot');
 
 //-----------------------------------------------------------
 
@@ -102,15 +119,22 @@ var BookmarkModel = (function(Bookmark) {
 
     async.series({
       select: function(next) {
-        Bookmark
-          .find()
+        var findOpts = _.isEmpty(_.trim(opts.searchText)) ? undefined: {$text: {$search: opts.searchText}};
+        var results = Bookmark
+          .find(findOpts)
           .limit(opts.size)
-          .skip(opts.size * (opts.page-1))
-          .sort('name')
+          .skip(opts.size * (opts.page-1));
+        results = _.isUndefined(findOpts) ? results.sort('name') : results;
+          results
           .exec(function(err, docs) {
-            selectErr = err;
-            result.data = docs;
-            next();
+            if(err) {
+              console.log(err);
+            } else {
+              selectErr = err;
+              //console.log(docs);
+              result.data = addRankingScore(docs, opts.searchText);;
+              next();
+            }
           });
       },
       count: function(next) {
@@ -141,10 +165,11 @@ var BookmarkModel = (function(Bookmark) {
 
   classDef.prototype.insert = function(vo, cb) {
     var bookmark = new Bookmark();
-
+    var keywords = cleanKeywords(vo.keywords, extractorOptions);
     bookmark.name = vo.name;
     bookmark.url = vo.url;
     bookmark.description = vo.description;
+    bookmark.keywords = keywords;
 
     bookmark.save(function(err, doc) {
       cb(err, doc)
@@ -152,12 +177,14 @@ var BookmarkModel = (function(Bookmark) {
   };
 
   classDef.prototype.update = function(id, vo, cb) {
+    var keywords = cleanKeywords(vo.keywords, extractorOptions);
     Bookmark
       .update(
         {_id: id},
         { $set: {
           name: vo.name,
           description: vo.description,
+          keywords: keywords,
           url: vo.url
         }}, function(err, doc) {
           if(err) cb(err, false);
@@ -180,4 +207,36 @@ var BookmarkModel = (function(Bookmark) {
 
 //-----------------------------------------------------------
 
+function addRankingScore(docs, searchText) {
+  var keywords = cleanKeywords(searchText, extractorOptions);
+  let newDocs = _.reduce(docs, function(results, item) {
+    var newItem = _.pick(item, ['name', 'description', 'keywords', 'url', 'id']);
+    newItem.score = getScore(newItem.keywords, keywords);
+    results.push(newItem);
+    return results;
+  }, []) ;
+
+  //console.log('After scoring: ' + newDocs)
+  return _.orderBy(newDocs, ['score'], ['desc']);
+}
+
+function getScore(text, keywords){
+  var count = 0;
+  keywords = _.isString(keywords) ? keywords.split(' ') : keywords;
+  _.forEach(keywords, function(keyword) {
+    
+    count += _.size(text.match(new RegExp(keyword, "g")));
+  })
+  //console.log('Count: ' + count)
+  return count;
+}
+
+function cleanKeywords(keywords) {
+  let text = '';
+  if (keywords) {
+    text = keywords.replace(/[^a-zA-Z 0-9_-]/g, ' '); //replace special characters
+  }
+
+  return text;
+}
 module.exports = BookmarkModel;

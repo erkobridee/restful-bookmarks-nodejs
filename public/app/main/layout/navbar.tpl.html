@@ -1,30 +1,22 @@
 <!-- Fixed navbar -->
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">RESTful App</a>
-    </div>
-    <div class="navbar-collapse collapse">
-      
-      <!-- navbar left -->
-      <ul class="nav navbar-nav" ng-repeat="item in menuItems"> 
-        <li class="{{item.css}}"><a href="{{item.url}}">{{item.label}}</a></li>         
-      </ul>
-      <!-- ./navbar left -->
 
-      <!-- navbar right -->
-      <!--
-      <ul class="nav navbar-nav navbar-right">
-        <li class="navbar-right"><a href="#help">Help</a></li>
-      </ul>
-      -->
-      <!-- ./navbar right -->
-
-    </div><!--/.nav-collapse -->
+<nav class="navbar navbar-expand-md navbar-light mb-4" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="#">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav" ng-repeat="item in menuItems"> 
+      <li class="nav-item {{item.css}}"><a href="{{item.url}}" class="nav-link">{{item.label}}</a></li>         
+    </ul>
   </div>
-</div>
+
+  <div class="collapse navbar-collapse justify-content-end">
+    <form class="form-inline mt-2 mt-md-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+
