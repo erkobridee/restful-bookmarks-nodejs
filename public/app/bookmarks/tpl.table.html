@@ -1,57 +1,68 @@
-<div ng-show="showFilter">
-
+<div class="row">&nbsp;</div>
+<div class="row" ng-show="showFilter">
   <div class="input-group">
-    <span class="input-group-addon">
-      <i class="glyphicon glyphicon-filter"></i>
+    <span class="input-group-prepend">
+      <label class="input-group-text" for="searchInputText">Filter with</label>
     </span>
     <input 
+      id="searchInputText"
       type="text" 
       class="form-control" 
-      placeholder="Text" 
-      ng-model="filter.search">
-    <span class="input-group-btn">
+      placeholder="enter keywords..." 
+      ng-model="filter.search"
+      ng-keyup="$event.keyCode == 13 && searchBookmarks()"
+      autofocus>
+    <div class="input-group-append">
       <button 
         ng-click="clearFilter()"
-        class="btn btn-default" type="button">Clear</button>
-    </span> 
+        class="btn btn-warning" type="button">
+        <i class="fa fa-times-circle" aria-hidden="true" title="Clear search term"></i>
+      </button>
+    </div>
   </div>
 
   <div class="row">&nbsp;</div>
 </div>
 
-<div class="table-responsive">
-  <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th class="visible-xs"></th>
-        <th>Name <i class="glyphicon glyphicon-new-window" title="Open in new window"></i></th>
-        <th>Description</th>
-        <th class="hidden-xs"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="bookmark in bookmarks.data | filter:filter.search">
-        <td class="visible-xs">
-          <a href="#bookmarks/edit/{{bookmark.id}}"><i class="glyphicon glyphicon-pencil"></i></a>
-        </td>
-        <td><a href="{{bookmark.url}}" target="_blank">{{bookmark.name}}</a></td>
-        <td>{{bookmark.description}}</td>
-        <td class="hidden-xs">
-          <a href="#bookmarks/edit/{{bookmark.id}}"><i class="glyphicon glyphicon-pencil"></i></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="row">
+  <div class="table-responsive">
+    <table class="table table-condensed table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th class="visible-xs">S. No.</th>
+          <th>Name <i class="glyphicon glyphicon-new-window" title="Open in new window"></i></th>
+          <th>Description</th>
+          <th>Keywords</th>
+          <th class="hidden-xs text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="bookmark in bookmarks.data">
+          <td class="visible-xs">
+            <a href="#bookmarks/edit/{{bookmark.id}}">{{$index + 1}}</a>
+          </td>
+          <td><a href="{{bookmark.url}}" target="_blank">{{bookmark.name}}</a></td>
+          <td>{{bookmark.description}}</td>
+          <td>{{bookmark.keywords}}</td>
+          <td class="hidden-xs text-center">
+            <a href="#bookmarks/edit/{{bookmark.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+
+<div class="clearfix"></div>
 
 <!-- http://getbootstrap.com/components/#pagination -->
 <div class="row" ng-show="bookmarks.pages > 1">
-  <div class="text-center">
-    <ul class="pagination">
-      <li 
+  <div class="col">
+    <ul class="pagination float-right">
+      <li class="page-item" 
         ng-repeat="n in [] | range: bookmarks.pages"
         ng-class="{active: (n+1) == bookmarks.page}"
-      ><a ng-bind="n+1" ng-click="setPage()">1</a></li>
+      ><a class="page-link" ng-bind="n+1" ng-click="setPage()">1</a></li>
     </ul>
   </div>
 </div>

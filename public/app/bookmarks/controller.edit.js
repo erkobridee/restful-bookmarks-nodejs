@@ -16,6 +16,7 @@ function ($rootScope, $scope, resource, $routeParams) {
   });
 
   $scope.save = function() {
+    $scope.submitClicked = true;
     $scope.bookmark.$update({id: $routeParams.id}, function(res) {
       $rootScope.$emit('bookmarks:update:event', 'updated');
     });

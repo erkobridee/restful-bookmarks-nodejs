@@ -24,7 +24,7 @@ body {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 #wrap > .container {
-  padding: 60px 15px 0;
+  /*padding: 60px 15px 0;*/
 }
 .container .credit {
   margin: 20px 0;
@@ -108,4 +108,13 @@ body {
   left: 0;
   right: 0;
   z-index: 99999;
+}
+
+.padding-0 {
+  padding: 0px;
+}
+
+.page-info{
+      margin-top: 5px;
+    margin-right: 15px;
 }

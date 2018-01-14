@@ -51,26 +51,35 @@ function ($rootScope, $scope, $location, resource, pagination) {
     return ($scope.pageSize < config.showFilterBtnMinlength) ? false : true;
   }
 
-  $scope.showFilterBtn = checkShowfilterBtn();
-
+  $scope.showFilterBtn = true; //checkShowfilterBtn();
+  $scope.searchText = '';
   $scope.filterBtnLabel = 'Show filter';
 
   $scope.showFilterBtnClick = function() {
     $scope.showFilter = !$scope.showFilter;
     $scope.filterBtnLabel = ($scope.showFilter ? 'Hide' : 'Show') + ' filter';
     if(!$scope.showFilter) $scope.clearFilter();
+
+    _.delay(function(){
+      document.getElementById("searchInputText").focus();
+    }, 100);
   }
 
   $scope.clearFilter = function() {
     $scope.filter = { search: '' };
   }
 
+  $scope.searchBookmarks = function() {
+    loadData(pagination.getNextPage(), $scope.filter.search);
+  }
+
   //---
 
-  function loadData(page) {
+  function loadData(page, searchText) {
     resource.get(
       {
         page: page,
+        searchText: searchText,
         size: pagination.getPageSize()
       }, 
       function(result) {
@@ -94,7 +103,7 @@ function ($rootScope, $scope, $location, resource, pagination) {
   $scope.setPage = function() {
     if((this.n+1) != $scope.bookmarks.page) {
       pagination.setNextPage(this.n+1);
-      loadData(pagination.getNextPage());
+      loadData(pagination.getNextPage(), $scope.filter.search);
     }
   };
 
@@ -123,7 +132,7 @@ function ($rootScope, $scope, $location, resource, pagination) {
     if($scope.showFilter) $scope.showFilterBtnClick();
 
     pagination.resetPageSize($scope.pageSize);
-    loadData(pagination.getNextPage());
+    loadData(pagination.getNextPage(), $scope.filter.search);
   }
 
   $scope.updatePageSizeFormSubmit = function() {
@@ -133,6 +142,6 @@ function ($rootScope, $scope, $location, resource, pagination) {
 
   //---
 
-  loadData(pagination.getNextPage());
+  loadData(pagination.getNextPage(), $scope.filter.search);
 
 }]);

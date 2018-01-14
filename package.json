@@ -9,9 +9,12 @@
   "dependencies": {
     "async": "*",
     "body-parser": "^1.12.4",
-    "express": "^4.12.4",
+    "express": "^4.16.2",
     "generic-pool": "*",
+    "keyword-extractor": "0.0.15",
+    "lodash": "^4.17.4",
     "mongoose": "*",
+    "mongoose-text-search": "0.0.2",
     "morgan": "^1.5.3",
     "multer": "^0.1.8",
     "mysql": "2.0.0-alpha3"

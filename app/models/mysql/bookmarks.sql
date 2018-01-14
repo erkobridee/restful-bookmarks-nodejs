@@ -29,6 +29,7 @@ CREATE TABLE `bookmark` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL DEFAULT '',
   `description` varchar(250) DEFAULT NULL,
+  `keywords` varchar(250) DEFAULT NULL,
   `url` varchar(250) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

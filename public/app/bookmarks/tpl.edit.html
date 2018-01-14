@@ -9,31 +9,35 @@
 <div class="container">
   
   <form role="form" name="bookmarkForm">
-    <div class="row" ng-class="{'has-error': bookmarkForm.name.$invalid}">
+    <div class="row">
       <div class="col-md-1">
-        <i ng-show="bookmarkForm.name.$error.required" 
-          class="glyphicon glyphicon-pencil"></i>
         <label for="nameInput">Name</label>
       </div>
       <div class="col-md-4">
-        <input 
+        <input autofocus
           type="text" 
+          ng-class="{'is-invalid': bookmarkForm.name.$dirty && bookmarkForm.name.$invalid}"
           class="form-control error" id="nameInput"
           name="name" ng-model="bookmark.name" required>
-      </div>      
+        <div class="col invalid-feedback">
+          Please provide a valid name.
+        </div>
+      </div>     
     </div>
     <div class="row">&nbsp;</div>
-    <div class="row" ng-class="{'has-error': bookmarkForm.url.$invalid}">
+    <div class="row">
       <div class="col-md-1">
-        <i ng-show="bookmarkForm.url.$error.required" 
-          class="glyphicon glyphicon-pencil"></i>
         <label for="urlInput">URL</label>
       </div>
       <div class="col-md-4">
         <input 
           type="url" 
+          ng-class="{'is-invalid': bookmarkForm.url.$dirty && bookmarkForm.url.$invalid}"
           class="form-control" id="urlInput"
           name="url" ng-model="bookmark.url" required>
+          <div class="col invalid-feedback">
+            Please provide a valid url.
+          </div>
       </div>
     </div>
     <div class="row">&nbsp;</div>
@@ -45,6 +49,17 @@
         <textarea 
           class="form-control" id="descriptionArea" 
           name="description" ng-model="bookmark.description"></textarea>
+      </div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <label class="col-md-5" for="keywordsArea">Keywords</label>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <textarea 
+          class="form-control" id="keywordsArea" 
+          name="keywords" ng-model="bookmark.keywords"></textarea>
       </div>
     </div>
 

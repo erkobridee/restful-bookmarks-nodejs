@@ -15,6 +15,7 @@ function ($rootScope, $scope, resource) {
     'id':0, 
     'name':'', 
     'description':'', 
+    'keywords': '',
     'url':''
   });
 
